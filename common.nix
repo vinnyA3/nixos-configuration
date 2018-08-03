@@ -117,7 +117,6 @@ with lib;
 	aspellDicts.en
 	haskellPackages.brittany
 	haskellPackages.pandoc
-	elvish
 	htop
 	lynx
 	man-pages
@@ -142,7 +141,6 @@ with lib;
 	st
 	unclutter
         xclip
-	# xorg.xmodmap
 	zathura
       ];
     in common ++ (if config.services.xserver.enable then xorg else noxorg);
