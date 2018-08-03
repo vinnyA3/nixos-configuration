@@ -53,7 +53,6 @@
     easytag     
     elvish
     rofi
-    dmenu2
     inkscape
     scrot
     gimp
