@@ -1,20 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, config }:
 
 {
-  networking.hostName = "zerodayz";
-
   imports = [
-    ./common.nix
     ./hardware-configuration.nix
+    ./common.nix
     ./services/xserver.nix
   ];
-  
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
-  # Grub menu is painted slowly, lower resolution ...
-  boot.loader.grub.gfxmodeEfi = "1024x768";
+  networking.hostName = "zerodayz";
+  networking.wireless.enable = true;
 
   boot.initrd.luks.devices = [
     {
@@ -24,8 +18,6 @@
       allowDiscards = true;
     }
   ];
-
-  boot.cleanTmpDir = true;
 
   # Enable sound + pulseaudio
   sound.enable = true;
@@ -41,22 +33,77 @@
   };
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
-  # Firewall
-  networking.firewall.enable = true;
-  networking.firewall.trustedInterfaces = [ "lo" ];
+  #############################################################################
+  ## Package management
+  #############################################################################
 
-  # Host specific packages
-  environment.systemPackages = with pkgs; [
-    compton
-    easytag     
-    elvish
-    rofi
-    inkscape
-    scrot
-    gimp
-    papirus-icon-theme
-    xorg.xmodmap
-  ];
+  nixpkgs = {
+     config.allowUnfree = true;
+     config.packageOverrides = pkgs: {
+       st = pkgs.callPackage ./ext-pkgs/st {
+         conf = builtins.readFile ./ext-pkgs/st/st-config.h;
+         patches =
+           [ 
+       ./ext-pkgs/st/st-vertcenter-20180320-6ac8c8a.diff
+       ./ext-pkgs/st/st-alpha.diff
+       ./ext-pkgs/st/st-xresources.diff ];
+       };
+ 
+       cmus = pkgs.callPackage ./ext-pkgs/cmus {};
+    };
+  };
+
+  environment.systemPackages = with pkgs;
+    let 
+      main = [
+      	wget
+        neovim
+        neomutt
+        python36Packages.neovim
+        tmux
+        cmus
+        git
+        nmap
+        file
+        fortune
+        figlet
+        aspell
+        aspellDicts.en
+        htop
+        lynx
+        man-pages
+        playerctl
+        gtypist
+        weechat
+        unzip
+        stow
+      ];
+      
+      # xorg pkgs installed when Xorg is availabe as display server
+      xorg = [
+        emacs
+        firefox
+        feh
+        qutebrowser
+        mpv
+        python36Packages.mps-youtube
+        haskellPackages.xmobar
+        haskellPackages.brittany
+        haskellPackages.pandoc
+        st
+        unclutter
+        xclip
+        zathura
+        xorg.xmodmap
+        rofi
+        inkscape
+        scrot
+        gimp
+        compton
+      ];
+
+      noxorg = [];
+    in main ++ (if config.services.xserver.enable then xorg else noxorg);
 }

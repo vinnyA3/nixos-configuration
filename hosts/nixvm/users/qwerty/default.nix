@@ -18,18 +18,17 @@
   systemd.user.services = {
     docker = {
       enable = true;
-      description = "Docker Daemon - enable on startup";  
+      description = "Docker Daemon - enable on startup";
     };
     
     ssh-agent = {
       enable = true;
-      description = "Start SSH Agent";  
+      description = "Start SSH Agent";
     };
   };
 
   programs.ssh = {
     enable = true;
-    startAgent = true;
     extraConfig = ''
       AddKeysToAgent yes
     '';

@@ -1,15 +1,22 @@
 #!/usr/bin/env bash
 
+# ln-host
+# @arguments:
+#   - hostname - string (must correspond to desired hostname in ./hosts)
+
 HOST=`hostname`
 
 if [[ ! -z "$1" ]]; then
   HOST=$1
 fi
 
-if [[ ! -e "hosts/$HOST.nix" ]] || [[ ! -e "hosts/$HOST-hardware.nix" ]]; then
-  echo "missing $HOST.nix or $HOST-hardware.nix" >&2
+CONFIG="hosts/$HOST/configuration.nix"
+# HARDWARE_CONFIG="hosts/$HOST/hardware-configuration.nix"
+
+if [[ ! -e $CONFIG ]];
+then
+  echo "missing $CONFIG" >&2
   exit 1
 fi
 
-ln -f "hosts/$HOST.nix"          configuration.nix
-ln -f "hosts/$HOST-hardware.nix" hardware-configuration.nix
+ln -sv "$PWD/$CONFIG" /etc/nixos/configuration.nix
