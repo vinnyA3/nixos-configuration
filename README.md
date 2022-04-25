@@ -40,3 +40,9 @@ To get started:
   * finally, build the configuration:
     - for good measure, test the build: ```nixos-rebuild dry-build```
     - when ready, enable on boot & build: ```nixos-rebuild switch```
+
+## User Nix Configs
+
+Some hosts, in `./hosts`, have specific user configs.  There files are nix
+configs that control the environment at the user-level.  Just copy these to
+your user's `~/.nixpkgs` to spin up the env.
