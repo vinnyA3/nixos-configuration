@@ -2,9 +2,12 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ./common.nix
-    ./services/xserver.nix
+     # absolute path - assumes default nixos config dir (when symlinked via
+     # scaffold script (ln-hosts)
+     /etc/nixos/hardware-configuration.nix
+     # configs relative to nixos-configuration/hosts/<host>
+     ../../common.nix
+     ../../services/xserver.nix
   ];
 
   networking.hostName = "zerodayz";
@@ -13,6 +16,7 @@
   boot.initrd.luks.devices = [
     {
       name = "root";
+      # upon luks creation & mounting, extra UUID and replace here
       device = "/dev/disk/by-uuid/60de27b0-6761-499b-a7f4-9b5603db2d12";
       preLVM = true;
       allowDiscards = true;
@@ -41,22 +45,23 @@
 
   nixpkgs = {
      config.allowUnfree = true;
-     config.packageOverrides = pkgs: {
-       st = pkgs.callPackage ./ext-pkgs/st {
-         conf = builtins.readFile ./ext-pkgs/st/st-config.h;
-         patches =
-           [ 
-       ./ext-pkgs/st/st-vertcenter-20180320-6ac8c8a.diff
-       ./ext-pkgs/st/st-alpha.diff
-       ./ext-pkgs/st/st-xresources.diff ];
-       };
- 
-       cmus = pkgs.callPackage ./ext-pkgs/cmus {};
+     config.packageOverrides = pkgs:
+      let customPkgLoc = "../../ext-pkgs"; in {
+        st = pkgs.callPackage "${customPkgLoc}/st" {
+          conf = builtins.readFile "${customPkgLoc}/st/st-config.h";
+          patches = [
+            "${customPkgLoc}/st/st-vertcenter-20180320-6ac8c8a.diff"
+            "${customPkgLoc}/st/st-alpha.diff"
+            "${customPkgLoc}/st/st-xresources.diff"
+          ];
+      };
+
+      cmus = pkgs.callPackage "${customPkgLoc}/cmus" {};
     };
   };
 
   environment.systemPackages = with pkgs;
-    let 
+    let
       main = [
       	wget
         neovim
