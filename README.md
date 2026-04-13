@@ -1,5 +1,5 @@
 <img
-  src="./.github/nixos.png"
+  src="./.github/miku.gif"
   alt="nixos logo"
   style="display: inline-block;"
   width="50"
