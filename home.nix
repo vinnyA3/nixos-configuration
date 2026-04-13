@@ -4,14 +4,21 @@
   pkgs,
   ...
 }:
-
+let
+  user = "qwerty";
+  homeDir = "/home/" + user;
+in
 {
-  # Home Manager needs a bit of information about you and the paths it should manage.
-  # Done and done ... we need to test the package updates now....
-  home.username = "qwerty";
-  home.homeDirectory = "/home/qwerty";
+  home = {
+    # let home manager know what paths it should manage and for who
+    username = user;
+    homeDirectory = homeDir;
+    stateVersion = "25.11";
+  };
 
-  home.stateVersion = "25.11";
+  # dots symlinks
+  home.file.".config/hypr".source =
+    config.lib.file.mkOutOfStoreSymlink homeDir + "/.dotfiles/config/hypr";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
