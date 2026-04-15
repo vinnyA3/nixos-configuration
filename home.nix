@@ -39,7 +39,6 @@ in
     yt-dlp
     pass
     pinentry-curses
-    btop
     localsend
     python3
     libnotify
@@ -162,6 +161,15 @@ in
     extraConfig = ''
       include noctaliarc
     '';
+  };
+
+  programs.btop = {
+    enable = true;
+    settings = {
+      # noctalia theme is automatically provided by noctalia's theming templates!
+      color_theme = "noctalia";
+      theme_background = false;
+    };
   };
 
   programs.fd.enable = true;
