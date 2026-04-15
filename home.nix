@@ -60,6 +60,23 @@ in
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
+  programs.tmux = {
+    enable = true;
+    keyMode = "vi";
+    mouse = true;
+    newSession = true;
+    shell = "${pkgs.zsh}/bin/zsh";
+    prefix = "C-a";
+    plugins = with pkgs; [
+      tmuxPlugins.dotbar
+      tmuxPlugins.pain-control
+      tmuxPlugins.tmux-floax
+    ];
+    extraConfig = ''
+      bind r source-file ~/.tmux.conf \; display "Config reloaded!"
+    '';
+  };
+
   ## SSH config setup
   programs.ssh = {
     enable = true;
