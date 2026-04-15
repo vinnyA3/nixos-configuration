@@ -14,6 +14,9 @@ in
     username = user;
     homeDirectory = homeDir;
     stateVersion = "25.11";
+    shell = {
+      enableZshIntegration = true;
+    };
   };
 
   # dots symlinks
@@ -24,14 +27,9 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    zsh
     neovim
-    qutebrowser
-    ghostty
-    git
-    starship
+    qutebrowser # check
     bat
-    eza
     ripgrep
     fzf
     brave
@@ -40,25 +38,85 @@ in
     yt-dlp
     pass
     pinentry-curses
-    lazygit
     btop
     localsend
-    cava
     python3
     libnotify
     zip
     unzip
     playerctl
-    jq
-    zathura
     xfce.thunar
     adw-gtk3
     wl-clipboard
     glib
     lxappearance
-    fd
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
+
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    envExtra = ''
+      export EDITOR=nvim
+      export SUDO_EDITOR=nvim
+      # ripgrep
+      export RIPGREP_CONFIG_PATH=$HOME
+      # colored, pretty man pages - requires bat (https://github.com/sharkdp/bat) binary
+      export MANROFFOPT="-c"
+      export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+      export PATH=$PATH:$HOME/.local/bin
+    '';
+    shellAliases = {
+      ":q" = "exit";
+      vim = "nvim";
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        email = "vincent.aceto@gmail.com";
+        name = "vinnyA3";
+      };
+    };
+  };
+
+  programs.lazygit.enable = true;
+
+  programs.ghostty = {
+    enable = true;
+    systemd = {
+      enable = false;
+    };
+    settings = {
+      theme = "noctalia"; # theme is automatically provided by noctalia's theming templates
+      font-size = 11;
+      window-padding-x = 8;
+      window-padding-y = 8;
+      background-opacity = 0.94;
+      async-backend = "epoll";
+    };
+  };
 
   programs.tmux = {
     keyMode = "vi";
@@ -83,6 +141,28 @@ in
     extraConfig = ''
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
     '';
+  };
+
+  programs.zathura = {
+    enable = true;
+    # noctalia theme is automatically provided by noctalia's theming templates!
+    extraConfig = ''
+      include noctaliarc
+    '';
+  };
+
+  programs.fd.enable = true;
+
+  programs.jq.enable = true;
+
+  programs.cava = {
+    enable = true;
+    settings = {
+      color = {
+        # noctalia theme is automatically provided by noctalia's theming templates!
+        theme = "noctalia";
+      };
+    };
   };
 
   ## SSH config setup

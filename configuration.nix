@@ -73,8 +73,6 @@
   ];
 
   programs.zsh.enable = true;
-  programs.zsh.autosuggestions.enable = true;
-  programs.zsh.syntaxHighlighting.enable = true;
   programs.neovim.enable = true;
   programs.hyprland = {
     enable = true;
