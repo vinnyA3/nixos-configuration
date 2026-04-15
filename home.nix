@@ -2,6 +2,7 @@
   config,
   inputs,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -74,6 +75,18 @@ in
       "..." = "cd ../..";
       "...." = "cd ../../..";
     };
+    initContent = lib.mkOrder 1000 ''
+      fh() {
+        print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+      }
+
+      zle -N fh
+      bindkey '^R' fh
+
+      autoload -z edit-command-line
+      zle -N edit-command-line
+      bindkey -M vicmd ' ' edit-command-line
+    '';
   };
 
   programs.starship = {
