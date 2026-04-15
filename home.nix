@@ -61,19 +61,24 @@ in
   ];
 
   programs.tmux = {
-    enable = true;
     keyMode = "vi";
+    enable = true;
     mouse = true;
     newSession = true;
     shell = "${pkgs.zsh}/bin/zsh";
     prefix = "C-a";
+    baseIndex = 1;
     plugins = with pkgs; [
-      tmuxPlugins.dotbar
+      {
+        plugin = tmuxPlugins.dotbar;
+        extraConfig = "set -g @tmux-dotbar-position top";
+      }
+
       tmuxPlugins.pain-control
       tmuxPlugins.tmux-floax
     ];
     extraConfig = ''
-      bind r source-file ~/.tmux.conf \; display "Config reloaded!"
+      bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
     '';
   };
 
