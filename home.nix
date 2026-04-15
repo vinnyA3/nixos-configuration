@@ -70,8 +70,11 @@ in
     baseIndex = 1;
     plugins = with pkgs; [
       {
-        plugin = tmuxPlugins.dotbar;
-        extraConfig = "set -g @tmux-dotbar-position top";
+        plugin = pkgs.unstable.tmuxPlugins.dotbar;
+        extraConfig = ''
+          set -g @tmux-dotbar-position top
+          set -g @tmux-dotbar-session-text "#H"
+        '';
       }
 
       tmuxPlugins.pain-control

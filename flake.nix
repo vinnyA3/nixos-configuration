@@ -17,9 +17,16 @@
   };
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { nixpkgs, nixpkgs-unstable, ... }@inputs:
     let
       sys = "x86_64-linux";
+      unstable-overlays = {
+        nixpkgs.overlays = [
+          (final: prev: {
+            unstable = nixpkgs-unstable.legacyPackages.${prev.system};
+          })
+        ];
+      };
     in
     {
       nixosConfigurations = {
@@ -38,6 +45,7 @@
                 extraSpecialArgs = { inherit inputs; };
               };
             }
+            unstable-overlays
           ];
 
           specialArgs = { inherit inputs; };
