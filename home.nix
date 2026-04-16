@@ -169,6 +169,7 @@ in
       # noctalia theme is automatically provided by noctalia's theming templates!
       color_theme = "noctalia";
       theme_background = false;
+      vim_keys = true;
     };
   };
 
@@ -184,6 +185,11 @@ in
         theme = "noctalia";
       };
     };
+  };
+
+  programs.vesktop = {
+    enable = true;
+    vencord.useSystem = true;
   };
 
   ## SSH config setup
