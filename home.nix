@@ -32,7 +32,6 @@ in
     qutebrowser # check
     bat
     ripgrep
-    fzf
     brave
     mpv
     ffmpeg
@@ -73,15 +72,14 @@ in
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
+      ta = "tmux attach -t";
+      tad = "tmux attach -d -t";
+      ts = "tmux new-session -s";
+      tl = "tmux list-sessions";
+      tksv = "tmux kill-server";
+      tks = "tmux kill-session -t";
     };
     initContent = lib.mkOrder 1000 ''
-      fh() {
-        print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
-      }
-
-      zle -N fh
-      bindkey '^R' fh
-
       autoload -z edit-command-line
       zle -N edit-command-line
       bindkey -M vicmd ' ' edit-command-line
@@ -134,7 +132,7 @@ in
     keyMode = "vi";
     enable = true;
     mouse = true;
-    newSession = true;
+    newSession = false;
     shell = "${pkgs.zsh}/bin/zsh";
     prefix = "C-a";
     baseIndex = 1;
@@ -149,8 +147,10 @@ in
 
       tmuxPlugins.pain-control
       tmuxPlugins.tmux-floax
+      tmuxPlugins.vim-tmux-navigator
     ];
     extraConfig = ''
+      set -sg escape-time 0
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
     '';
   };
@@ -177,11 +177,15 @@ in
 
   programs.jq.enable = true;
 
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.cava = {
     enable = true;
     settings = {
       color = {
-        # noctalia theme is automatically provided by noctalia's theming templates!
         theme = "noctalia";
       };
     };

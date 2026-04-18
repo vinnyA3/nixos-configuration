@@ -117,8 +117,9 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # custom trusted root ca certificates
   security.pki.certificateFiles = [
-    "./ssl/certs/ca.pem"
+    ./ssl/certs/ca.pem
   ];
 
   # Open ports in the firewall.
