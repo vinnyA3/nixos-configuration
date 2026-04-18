@@ -117,6 +117,10 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  security.pki.certificateFiles = [
+    "./ssl/certs/ca.pem"
+  ];
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 53317 ];
   networking.firewall.allowedUDPPorts = [ 53317 ];
