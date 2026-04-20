@@ -8,6 +8,7 @@
 let
   user = "qwerty";
   homeDir = "/home/" + user;
+  xdgDefaultImageViewer = [ "imv.desktop" ];
 in
 {
   home = {
@@ -26,6 +27,36 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  xdg = {
+    desktopEntries = {
+      imv = {
+        name = "imv";
+        genericName = "lightweight image viewer";
+        exec = "imv";
+        type = "Application";
+        terminal = false;
+      };
+    };
+
+    mime.enable = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = builtins.listToAttrs (
+        map
+          (v: {
+            name = v;
+            value = xdgDefaultImageViewer;
+          })
+          [
+            "image/png"
+            "image/jpg"
+            "image/jpeg"
+            "image/gif"
+          ]
+      );
+    };
+  };
 
   home.packages = with pkgs; [
     neovim
@@ -195,6 +226,8 @@ in
     enable = true;
     vencord.useSystem = true;
   };
+
+  programs.imv.enable = true;
 
   ## SSH config setup
   programs.ssh = {
