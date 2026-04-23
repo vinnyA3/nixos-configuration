@@ -80,6 +80,7 @@ in
     wl-clipboard
     glib
     lxappearance
+    bluetui
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
@@ -228,6 +229,8 @@ in
   };
 
   programs.imv.enable = true;
+
+  programs.nnn.enable = true;
 
   ## SSH config setup
   programs.ssh = {
