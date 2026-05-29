@@ -2,7 +2,7 @@
   description = "System configuration flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=e0d2e91b931d6cc098b2447b49f778324abee5a8";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=25f538306313eae3927264466c70d7001dcea1df";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     noctalia = {

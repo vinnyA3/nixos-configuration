@@ -82,6 +82,7 @@ in
     lxappearance
     bluetui
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    cliamp
   ];
 
   programs.zsh = {
@@ -110,6 +111,7 @@ in
       tl = "tmux list-sessions";
       tksv = "tmux kill-server";
       tks = "tmux kill-session -t";
+      open = "xdg-open";
     };
     initContent = lib.mkOrder 1000 ''
       autoload -z edit-command-line
