@@ -81,8 +81,8 @@ in
     glib
     lxappearance
     bluetui
+    unstable.cliamp
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-    cliamp
   ];
 
   programs.zsh = {
@@ -141,6 +141,9 @@ in
       user = {
         email = "vincent.aceto@gmail.com";
         name = "vinnyA3";
+      };
+      pull = {
+        rebase = true;
       };
     };
   };
