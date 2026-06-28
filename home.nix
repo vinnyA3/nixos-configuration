@@ -82,6 +82,7 @@ in
     lxappearance
     bluetui
     unstable.cliamp
+    unstable.niri
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
@@ -150,20 +151,22 @@ in
 
   programs.lazygit.enable = true;
 
-  programs.ghostty = {
-    enable = true;
-    systemd = {
-      enable = false;
-    };
-    settings = {
-      theme = "noctalia"; # theme is automatically provided by noctalia's theming templates
-      font-size = 11;
-      window-padding-x = 8;
-      window-padding-y = 8;
-      background-opacity = 0.94;
-      async-backend = "epoll";
-    };
-  };
+  programs.alacritty.enable = true;
+
+  # programs.ghostty = {
+  #   enable = false;
+  #   systemd = {
+  #     enable = false;
+  #   };
+  #   settings = {
+  #     theme = "noctalia"; # theme is automatically provided by noctalia's theming templates
+  #     font-size = 11;
+  #     window-padding-x = 8;
+  #     window-padding-y = 8;
+  #     background-opacity = 0.94;
+  #     # async-backend = "epoll"; # enable for hyprland
+  #   };
+  # };
 
   programs.tmux = {
     keyMode = "vi";

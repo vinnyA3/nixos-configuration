@@ -76,9 +76,11 @@
   programs.neovim.enable = true;
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
-    xwayland.enable = true;
+    # withUWSM = true;
+    # xwayland.enable = true;
   };
+
+  # programs.niri.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -108,7 +110,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd niri";
         user = "qwerty";
       };
     };
