@@ -18,7 +18,7 @@
     # };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia/cachix?rev=4f63f01c1e7729085998dd39201dedad3e700cb5";
+      url = "github:noctalia-dev/noctalia/cachix";
     };
 
     home-manager = {

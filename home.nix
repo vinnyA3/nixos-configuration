@@ -11,6 +11,10 @@ let
   xdgDefaultImageViewer = [ "imv.desktop" ];
 in
 {
+  imports = [
+    inputs.noctalia.homeModules.default
+  ];
+
   home = {
     # let home manager know what paths it should manage and for who
     username = user;
@@ -28,6 +32,8 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  fonts.fontconfig.enable = true;
+
   xdg = {
     desktopEntries = {
       imv = {
@@ -36,6 +42,25 @@ in
         exec = "imv";
         type = "Application";
         terminal = false;
+      };
+
+      chromium = {
+        name = "Chromium (Wayland)";
+        genericName = "Web Browser";
+        exec = "chromium --enable-features=UseOzonePlatform --ozone-platform=wayland %U";
+        terminal = false;
+        categories = [
+          "Network"
+          "WebBrowser"
+        ];
+
+        mimeType = [
+          "text/html"
+          "text/xml"
+          "application/xhtml+xml"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+        ];
       };
     };
 
@@ -63,7 +88,6 @@ in
     qutebrowser # check
     bat
     ripgrep
-    brave
     mpv
     ffmpeg
     yt-dlp
@@ -83,8 +107,19 @@ in
     bluetui
     unstable.cliamp
     unstable.niri
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    cava
+    nerd-fonts.monaspace
   ];
+
+  programs.noctalia = {
+    enable = true;
+    settings = {
+      wallpaper = {
+        enable = true;
+        default.path = "$HOME/Pictures/wallpaper/boju-jutsu.png";
+      };
+    };
+  };
 
   programs.zsh = {
     enable = true;
@@ -151,7 +186,39 @@ in
 
   programs.lazygit.enable = true;
 
-  programs.alacritty.enable = true;
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      general = {
+        import = [ "~/.config/alacritty/themes/noctalia.toml" ];
+        live_config_reload = true;
+      };
+
+      window = {
+        opacity = 0.92;
+        padding = {
+          x = 10;
+          y = 10;
+        };
+      };
+
+      font = {
+        size = 11.0;
+        offset = {
+          x = 0;
+          y = 1;
+        };
+
+        glyph_offset = {
+          x = 0;
+          y = 1;
+        };
+
+        normal.family = "MonaspiceNe Nerd Font";
+        normal.style = "Regular";
+      };
+    };
+  };
 
   # programs.ghostty = {
   #   enable = false;
@@ -222,13 +289,9 @@ in
     enableZshIntegration = true;
   };
 
-  programs.cava = {
+  programs.chromium = {
     enable = true;
-    settings = {
-      color = {
-        theme = "noctalia";
-      };
-    };
+    package = pkgs.chromium.override { enableWideVine = true; };
   };
 
   programs.vesktop = {
@@ -238,7 +301,7 @@ in
 
   programs.imv.enable = true;
 
-  programs.nnn.enable = true;
+  programs.yazi.enable = true;
 
   ## SSH config setup
   programs.ssh = {
