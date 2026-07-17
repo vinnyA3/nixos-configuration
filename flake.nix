@@ -9,20 +9,14 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=25f538306313eae3927264466c70d7001dcea1df";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=95ca1e203c0750115fd4a6f17d5a245dfe6b1edd";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
-    # noctalia = {
-    #   url = "github:noctalia-dev/noctalia-shell";
-    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
-    # };
-
     noctalia = {
       url = "github:noctalia-dev/noctalia/cachix";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -44,14 +38,14 @@
         "nixos-beelink" = nixpkgs.lib.nixosSystem {
           system = sys;
           modules = [
-            ./configuration.nix
-            ./hardware-configuration.nix
+            ./hosts/nixos-beelink/configuration.nix
+            ./hosts/nixos-beelink/hardware-configuration.nix
             inputs.home-manager.nixosModules.home-manager
             {
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.qwerty = ./home.nix;
+                users.qwerty = ./hosts/nixos-beelink/home.nix;
                 backupFileExtension = "backup";
                 extraSpecialArgs = { inherit inputs; };
               };

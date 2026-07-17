@@ -25,14 +25,34 @@ in
     };
   };
 
+  # force modern apps to broadcast 'prefer dark' scheme to Chromium
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
   # dots symlinks
   home.file.".config/hypr".source =
     config.lib.file.mkOutOfStoreSymlink homeDir + "/.dotfiles/config/hypr";
+
+  home.sessionVariables = {
+    # Tells Chromium explicitly where to look for your installed GTK themes
+    XDG_DATA_DIRS = "$XDG_DATA_DIRS:$HOME/.nix-profile/share:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share";
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   fonts.fontconfig.enable = true;
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
+    };
+  };
 
   xdg = {
     desktopEntries = {
@@ -44,27 +64,33 @@ in
         terminal = false;
       };
 
-      chromium = {
-        name = "Chromium (Wayland)";
-        genericName = "Web Browser";
-        exec = "chromium --enable-features=UseOzonePlatform --ozone-platform=wayland %U";
-        terminal = false;
+      ytm = {
+        name = "Youtube Music";
+        genericName = "Youtube Music Web App";
+        exec = "chromium --app=https://music.youtube.com/";
+        icon = "/home/qwerty/Pictures/pfps/Reze.jpg";
+        type = "Application";
         categories = [
-          "Network"
           "WebBrowser"
+          "Network"
         ];
+      };
 
-        mimeType = [
-          "text/html"
-          "text/xml"
-          "application/xhtml+xml"
-          "x-scheme-handler/http"
-          "x-scheme-handler/https"
+      chatgpt = {
+        name = "ChatGPT";
+        genericName = "ChatGPT Web App";
+        exec = "chromium --app=https://chatgpt.com/";
+        icon = "/home/qwerty/Pictures/pfps/Crack.jpg";
+        type = "Application";
+        categories = [
+          "WebBrowser"
+          "Network"
         ];
       };
     };
 
     mime.enable = true;
+
     mimeApps = {
       enable = true;
       defaultApplications = builtins.listToAttrs (
@@ -109,14 +135,42 @@ in
     unstable.niri
     cava
     nerd-fonts.monaspace
+    (symlinkJoin {
+      name = "vesktop-wrapped";
+      paths = [ vesktop ];
+      buildInputs = [ makeWrapper ];
+      postBuild = ''
+        # Remove the original shortcut to prevent any duplicates
+        rm -f $out/share/applications/vesktop.desktop
+
+        mkdir -p $out/share/applications
+        cat > $out/share/applications/vesktop.desktop <<EOF
+        [Desktop Entry]
+        Name=Vesktop
+        Exec=vesktop --disable-gpu-memory-buffer-video-frames --disable-features=UseOzonePlatform --ozone-platform=wayland %U
+        Icon=vesktop
+        Type=Application
+        Categories=Network;InstantMessaging;
+        Terminal=false
+        MimeType=x-scheme-handler/discord;
+        EOF
+      '';
+    })
+    nwg-look
+    pinta
   ];
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
 
   programs.noctalia = {
     enable = true;
     settings = {
       wallpaper = {
         enable = true;
-        default.path = "$HOME/Pictures/wallpaper/boju-jutsu.png";
       };
     };
   };
@@ -149,6 +203,7 @@ in
       tks = "tmux kill-session -t";
       open = "xdg-open";
     };
+
     initContent = lib.mkOrder 1000 ''
       autoload -z edit-command-line
       zle -N edit-command-line
@@ -220,21 +275,6 @@ in
     };
   };
 
-  # programs.ghostty = {
-  #   enable = false;
-  #   systemd = {
-  #     enable = false;
-  #   };
-  #   settings = {
-  #     theme = "noctalia"; # theme is automatically provided by noctalia's theming templates
-  #     font-size = 11;
-  #     window-padding-x = 8;
-  #     window-padding-y = 8;
-  #     background-opacity = 0.94;
-  #     # async-backend = "epoll"; # enable for hyprland
-  #   };
-  # };
-
   programs.tmux = {
     keyMode = "vi";
     enable = true;
@@ -248,7 +288,7 @@ in
         plugin = pkgs.unstable.tmuxPlugins.dotbar;
         extraConfig = ''
           set -g @tmux-dotbar-position top
-          set -g @tmux-dotbar-session-text "#H"
+          set -g @tmux-dotbar-session-text "[#S]"
         '';
       }
 
@@ -292,11 +332,12 @@ in
   programs.chromium = {
     enable = true;
     package = pkgs.chromium.override { enableWideVine = true; };
-  };
-
-  programs.vesktop = {
-    enable = true;
-    vencord.useSystem = true;
+    commandLineArgs = [
+      "--enable-features=UseOzonePlatform"
+      "--ozone-platform=wayland"
+      "--enable-features=WaylandWindowDecorations,WebUIDarkMode"
+      "--force-dark-mode"
+    ];
   };
 
   programs.imv.enable = true;

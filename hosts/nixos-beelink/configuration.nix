@@ -99,6 +99,10 @@
     wget
   ];
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
   environment.variables.PATH = "${pkgs.clang-tools}/bin:$PATH";
   environment.variables.CPATH = "${pkgs.glibc.dev}/include";
 
@@ -123,7 +127,7 @@
 
   # custom trusted root ca certificates
   security.pki.certificateFiles = [
-    ./ssl/certs/ca.pem
+    ../../ssl/certs/ca.pem
   ];
 
   # Open ports in the firewall.
