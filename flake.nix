@@ -50,6 +50,29 @@
                 extraSpecialArgs = { inherit inputs; };
               };
             }
+
+            unstable-overlays
+          ];
+
+          specialArgs = { inherit inputs; };
+        };
+
+        "galp" = nixpkgs.lib.nixosSystem {
+          system = sys;
+          modules = [
+            ./hosts/galp/configuration.nix
+            ./hosts/galp/hardware-configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.qwerty_asdf = ./hosts/galp/home.nix;
+                backupFileExtension = "backup";
+                extraSpecialArgs = { inherit inputs; };
+              };
+            }
+
             unstable-overlays
           ];
 
