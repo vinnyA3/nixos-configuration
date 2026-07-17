@@ -19,5 +19,5 @@ Here are my current [NixOS](https://nixos.org/) configuration files!
 2. clone dotfiles repo into default nix directory
     - `cd /etc/nixos`
     - `git clone https://github.com/vinnyA3/nixos-configuration.git`
-3. build: `sudo nixos-rebuild switch`
+3. choose host & build: `sudo nixos-rebuild switch --flake .#<host ie. nixos-beelink>`
 4. profit
