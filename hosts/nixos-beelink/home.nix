@@ -1,58 +1,17 @@
 {
-  config,
   inputs,
   pkgs,
   lib,
   ...
 }:
 let
-  user = "qwerty";
-  homeDir = "/home/" + user;
   xdgDefaultImageViewer = [ "imv.desktop" ];
 in
 {
   imports = [
     inputs.noctalia.homeModules.default
+    ../../home/common.nix
   ];
-
-  home = {
-    # let home manager know what paths it should manage and for who
-    username = user;
-    homeDirectory = homeDir;
-    stateVersion = "25.11";
-    shell = {
-      enableZshIntegration = true;
-    };
-  };
-
-  # force modern apps to broadcast 'prefer dark' scheme to Chromium
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
-  # dots symlinks
-  home.file.".config/hypr".source =
-    config.lib.file.mkOutOfStoreSymlink homeDir + "/.dotfiles/config/hypr";
-
-  home.sessionVariables = {
-    # Tells Chromium explicitly where to look for your installed GTK themes
-    XDG_DATA_DIRS = "$XDG_DATA_DIRS:$HOME/.nix-profile/share:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share";
-  };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-  fonts.fontconfig.enable = true;
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
-    };
-  };
 
   xdg = {
     desktopEntries = {
