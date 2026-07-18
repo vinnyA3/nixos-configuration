@@ -47,7 +47,10 @@
                 useUserPackages = true;
                 users.qwerty = ./hosts/nixos-beelink/home.nix;
                 backupFileExtension = "backup";
-                extraSpecialArgs = { inherit inputs; };
+                extraSpecialArgs = {
+                  inherit inputs;
+                  homeUser = "qwerty";
+                };
               };
             }
 

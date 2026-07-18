@@ -1,3 +1,4 @@
+{ homeUser, ... }:
 let
   xdgDefaultImageViewer = [ "imv.desktop" ];
 in
@@ -16,7 +17,7 @@ in
         name = "Youtube Music";
         genericName = "Youtube Music Web App";
         exec = "chromium --app=https://music.youtube.com/";
-        icon = "/home/qwerty/Pictures/pfps/Reze.jpg";
+        icon = "/home/${homeUser}/Pictures/pfps/Reze.jpg";
         type = "Application";
         categories = [
           "WebBrowser"
@@ -28,7 +29,7 @@ in
         name = "ChatGPT";
         genericName = "ChatGPT Web App";
         exec = "chromium --app=https://chatgpt.com/";
-        icon = "/home/qwerty/Pictures/pfps/Crack.jpg";
+        icon = "/home/${homeUser}/Pictures/pfps/Crack.jpg";
         type = "Application";
         categories = [
           "WebBrowser"
