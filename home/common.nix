@@ -32,8 +32,6 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  fonts.fontconfig.enable = true;
-
   gtk = {
     enable = true;
     theme = {
@@ -72,7 +70,6 @@ in
     lxappearance
     bluetui
     cava
-    nerd-fonts.monaspace
     (symlinkJoin {
       name = "vesktop-wrapped";
       paths = [ vesktop ];

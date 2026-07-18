@@ -1,0 +1,31 @@
+{
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
+  programs.fd.enable = true;
+
+  programs.jq.enable = true;
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  # Yea, these last 3 tools aren't necessary development tools ... we'll split these later
+  programs.btop = {
+    enable = true;
+    settings = {
+      # noctalia theme is automatically provided by noctalia's theming templates!
+      color_theme = "noctalia";
+      theme_background = false;
+      vim_keys = true;
+    };
+  };
+
+  programs.imv.enable = true;
+
+  programs.yazi.enable = true;
+}
