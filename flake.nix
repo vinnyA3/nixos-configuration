@@ -72,7 +72,10 @@
                 useUserPackages = true;
                 users.qwerty_asdf = ./hosts/galp/home.nix;
                 backupFileExtension = "backup";
-                extraSpecialArgs = { inherit inputs; };
+                extraSpecialArgs = {
+                  inherit inputs;
+                  homeUser = "qwerty_asdf";
+                };
               };
             }
 
