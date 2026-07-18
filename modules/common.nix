@@ -1,49 +1,57 @@
-# System Config
-# Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 { pkgs, ... }:
-
 {
-  imports = [
-    ../../modules/common.nix
-    ../../modules/networking.nix
-    ../../modules/bluetooth.nix
-    ../../modules/printing.nix
-    ../../modules/session-vars.nix
-    ../../modules/audio.nix
+  nixpkgs.config.allowUnfree = true;
 
-    (import ../../modules/greeter.nix {
-      user = "qwerty";
-    })
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  time.timeZone = "America/New_York";
+
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            capslock = "overload(meta, esc)";
+            esc = "overload(esc, capslock)";
+          };
+        };
+      };
+    };
+  };
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    clang-tools
+    stdenv.cc.cc
   ];
 
-  networking.hostName = "nixos-beelink";
+  programs.zsh.enable = true;
+  programs.neovim.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-  services.getty.autologinUser = "qwerty";
-
-  users.groups.nixconf = {
-    members = [ "qwerty" ];
-  };
-
-  users.users.qwerty = {
-    isNormalUser = true;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "sudo"
-    ];
-
-    shell = pkgs.zsh;
-  };
-
-  programs.hyprland = {
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  programs.gnupg.agent = {
     enable = true;
-    # withUWSM = true;
-    # xwayland.enable = true;
+    # enableSSHSupport = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+  ];
+
+  environment.variables.PATH = "${pkgs.clang-tools}/bin:$PATH";
+  environment.variables.CPATH = "${pkgs.glibc.dev}/include";
+
+  nix.settings.experimental-features = [
+    "flakes"
+    "nix-command"
+  ];
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
