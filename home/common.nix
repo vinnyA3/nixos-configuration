@@ -18,17 +18,10 @@ in
     };
   };
 
-  # force modern apps to broadcast 'prefer dark' scheme to Chromium
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
   # Dots symlinks - any dotfiles that I'd like to keep out of declarative nix config
   home.file.".config/noctalia/noctalia-full-config.toml".source =
     config.lib.file.mkOutOfStoreSymlink homeDir
-    + "/.dotfiles/nixos/config/noctalia/noctalia-full-config";
+    + "/.dotfiles/nixos/config/noctalia/noctalia-full-config.toml";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

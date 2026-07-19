@@ -27,6 +27,12 @@
     members = [ "qwerty" ];
   };
 
+  programs.hyprland = {
+    enable = false;
+    # withUWSM = true;
+    # xwayland.enable = true;
+  };
+
   users.users.qwerty = {
     isNormalUser = true;
     extraGroups = [
