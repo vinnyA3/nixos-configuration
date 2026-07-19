@@ -25,9 +25,10 @@ in
     };
   };
 
-  # dots symlinks
-  home.file.".config/hypr".source =
-    config.lib.file.mkOutOfStoreSymlink homeDir + "/.dotfiles/config/hypr";
+  # Dots symlinks - any dotfiles that I'd like to keep out of declarative nix config
+  home.file.".config/noctalia/noctalia-full-config.toml".source =
+    config.lib.file.mkOutOfStoreSymlink homeDir
+    + "/.dotfiles/nixos/config/noctalia/noctalia-full-config";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
