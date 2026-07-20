@@ -13,6 +13,7 @@
     ../../home/browsers.nix
     ../../home/noctalia.nix
     ../../home/zathura.nix
+    ../../home/entertainment.nix
     ../../home/ssh.nix
   ];
 }
