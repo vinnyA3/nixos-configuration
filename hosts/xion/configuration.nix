@@ -8,6 +8,7 @@
     ../../modules/session-vars.nix
     ../../modules/security.nix
     ../../modules/audio.nix
+    ../../modules/steam.nix
 
     (import ../../modules/greeter.nix {
       user = "qwerty";
@@ -15,6 +16,8 @@
   ];
 
   networking.hostName = "xion";
+  # turn off wireless & disable wpa-supplicant
+  networking.networkmanager.unmanaged = [ "*-wlp192s0" ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
