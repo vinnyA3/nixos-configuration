@@ -28,4 +28,13 @@
   programs.imv.enable = true;
 
   programs.yazi.enable = true;
+
+  programs.opencode = {
+    enable = true;
+    settings = {
+      # per homemanager docs, $schema should already be added
+      autoupdate = false;
+      theme = "nocatlia";
+    };
+  };
 }

@@ -28,6 +28,7 @@
       tksv = "tmux kill-server";
       tks = "tmux kill-session -t";
       open = "xdg-open";
+      c = "opencode --auto";
     };
 
     initContent = lib.mkOrder 1000 ''
