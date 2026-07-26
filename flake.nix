@@ -35,6 +35,31 @@
     in
     {
       nixosConfigurations = {
+        "xion" = nixpkgs.lib.nixosSystem {
+          system = sys;
+          modules = [
+            ./hosts/xion/configuration.nix
+            ./hosts/xion/hardware-configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.qwerty = ./hosts/xion/home.nix;
+                backupFileExtension = "backup";
+                extraSpecialArgs = {
+                  inherit inputs;
+                  homeUser = "qwerty";
+                };
+              };
+            }
+
+            unstable-overlays
+          ];
+
+          specialArgs = { inherit inputs; };
+        };
+
         "nixos-beelink" = nixpkgs.lib.nixosSystem {
           system = sys;
           modules = [
