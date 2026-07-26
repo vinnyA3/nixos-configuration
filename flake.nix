@@ -19,6 +19,9 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # https://docs.steambrew.app/users/getting-started/installation
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
   };
 
   outputs =
@@ -55,6 +58,12 @@
             }
 
             unstable-overlays
+
+            {
+              nixpkgs.overlays = [
+                inputs.millennium.overlays.default
+              ];
+            }
           ];
 
           specialArgs = { inherit inputs; };
