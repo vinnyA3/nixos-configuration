@@ -9,6 +9,7 @@
     ../../modules/security.nix
     ../../modules/audio.nix
     ../../modules/steam.nix
+    ../../modules/graphics.nix
 
     (import ../../modules/greeter.nix {
       user = "qwerty";
