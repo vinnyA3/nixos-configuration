@@ -14,6 +14,7 @@
     ../../home/noctalia.nix
     ../../home/zathura.nix
     ../../home/entertainment.nix
+    ../../home/xwayland.nix
     ../../home/ssh.nix
   ];
 }
