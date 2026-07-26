@@ -23,6 +23,18 @@ in
     config.lib.file.mkOutOfStoreSymlink homeDir
     + "/.dotfiles/nixos/config/noctalia/noctalia-full-config.toml";
 
+  home.file.".config/qutebrowser/theming/__init__.py".source =
+    config.lib.file.mkOutOfStoreSymlink homeDir
+    + "/.dotfiles/nixos/config/qutebrowser/theming/__init__.py";
+
+  home.file.".config/qutebrowser/theming/draw.py".source =
+    config.lib.file.mkOutOfStoreSymlink homeDir
+    + "/.dotfiles/nixos/config/qutebrowser/theming/draw.py";
+
+  home.file.".config/qutebrowser/theming/noctalia-colors-template.json".source =
+    config.lib.file.mkOutOfStoreSymlink homeDir
+    + "/.dotfiles/nixos/config/qutebrowser/theming/noctalia-colors-template.json";
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
