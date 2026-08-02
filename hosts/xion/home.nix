@@ -17,4 +17,11 @@
     ../../home/xwayland.nix
     ../../home/ssh.nix
   ];
+
+  home = {
+    sessionVariables = {
+      XCURSOR_THEME = "mori-calliope-x";
+      XCURSOR_SIZE = "24";
+    };
+  };
 }

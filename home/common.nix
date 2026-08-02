@@ -44,6 +44,11 @@ in
       name = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
     };
+
+    cursorTheme = {
+      name = "mori-calliope-x";
+      size = 24;
+    };
   };
 
   # === COMMON ===
