@@ -19,10 +19,6 @@ in
   };
 
   # Dots symlinks - any dotfiles that I'd like to keep out of declarative nix config
-  home.file.".config/noctalia/noctalia-full-config.toml".source =
-    config.lib.file.mkOutOfStoreSymlink homeDir
-    + "/.dotfiles/nixos/config/noctalia/noctalia-full-config.toml";
-
   home.file.".config/qutebrowser/theming/__init__.py".source =
     config.lib.file.mkOutOfStoreSymlink homeDir
     + "/.dotfiles/nixos/config/qutebrowser/theming/__init__.py";
