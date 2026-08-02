@@ -29,6 +29,7 @@
       tks = "tmux kill-session -t";
       open = "xdg-open";
       c = "opencode";
+      cat = "bat";
     };
 
     initContent = lib.mkOrder 1000 ''
