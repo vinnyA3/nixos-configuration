@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.direnv = {
     enable = true;
@@ -37,4 +38,26 @@
       theme = "nocatlia";
     };
   };
+
+  home.packages = with pkgs; [
+    neovim # enabled in modules/common too
+    bat
+    ripgrep
+    ffmpeg
+    yt-dlp
+    pinentry-curses
+    localsend
+    python3
+    libnotify
+    zip
+    unzip
+    playerctl
+    wl-clipboard
+    glib
+    lxappearance
+    bluetui
+    adw-gtk3
+    nwg-look
+    pinta
+  ];
 }

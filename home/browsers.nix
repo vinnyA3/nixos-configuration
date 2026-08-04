@@ -10,4 +10,8 @@
       "--force-dark-mode"
     ];
   };
+
+  home.packages = with pkgs; [
+    qutebrowser
+  ];
 }
