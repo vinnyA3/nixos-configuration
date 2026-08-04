@@ -39,6 +39,16 @@
     };
   };
 
+  programs.tealdeer = {
+    enable = true;
+    enableAutoUpdates = true;
+    settings = {
+      updates = {
+        auto_update = true;
+      };
+    };
+  };
+
   home.packages = with pkgs; [
     neovim # enabled in modules/common too
     bat
