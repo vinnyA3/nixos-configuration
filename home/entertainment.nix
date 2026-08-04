@@ -5,6 +5,7 @@
     manga-tui
     cava
     mpv
+    nexusmods-app-unfree
     (symlinkJoin {
       name = "vesktop-wrapped";
       paths = [ vesktop ];
