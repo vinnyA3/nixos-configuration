@@ -8,7 +8,7 @@
     ../../modules/session-vars.nix
     ../../modules/security.nix
     ../../modules/audio.nix
-    ../../modules/steam.nix
+    ../../modules/gaming.nix
     ../../modules/graphics.nix
 
     (import ../../modules/greeter.nix {
