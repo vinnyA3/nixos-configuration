@@ -69,5 +69,6 @@
     adw-gtk3
     nwg-look
     pinta
+    mermaid-cli
   ];
 }
