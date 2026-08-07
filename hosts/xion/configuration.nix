@@ -10,6 +10,7 @@
     ../../modules/audio.nix
     ../../modules/gaming.nix
     ../../modules/graphics.nix
+    ../../modules/power.nix
 
     (import ../../modules/greeter.nix {
       user = "qwerty";
@@ -34,6 +35,7 @@
       "networkmanager"
       "wheel"
       "sudo"
+      "gamemode"
     ];
 
     shell = pkgs.zsh;
