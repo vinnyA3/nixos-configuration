@@ -30,6 +30,7 @@
       open = "xdg-open";
       c = "opencode";
       cat = "bat";
+      twerk = "twerk";
     };
 
     initContent = lib.mkOrder 1000 ''
