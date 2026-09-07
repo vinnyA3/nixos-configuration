@@ -7,6 +7,9 @@
   programs.steam = {
     enable = true;
     package = pkgs.millennium-steam;
+    protontricks = {
+      enable = true;
+    };
   };
 
   programs.gamemode = {
