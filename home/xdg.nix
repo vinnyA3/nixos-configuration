@@ -1,9 +1,16 @@
-{ homeUser, ... }:
+{ homeUser, pkgs, ... }:
 let
   xdgDefaultImageViewer = [ "imv.desktop" ];
 in
 {
   xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
+    };
+
     desktopEntries = {
       imv = {
         name = "imv";
