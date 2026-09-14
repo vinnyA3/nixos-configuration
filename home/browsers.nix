@@ -11,8 +11,11 @@
     ];
   };
 
+  programs.brave = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
     qutebrowser
-    brave
   ];
 }
