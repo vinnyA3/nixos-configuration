@@ -118,6 +118,31 @@
 
           specialArgs = { inherit inputs; };
         };
+
+        "f13" = nixpkgs.lib.nixosSystem {
+          system = sys;
+          modules = [
+            ./hosts/f13/configuration.nix
+            ./hosts/f13/hardware-configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.qwerty = ./hosts/f13/home.nix;
+                backupFileExtension = "backup";
+                extraSpecialArgs = {
+                  inherit inputs;
+                  homeUser = "qwerty";
+                };
+              };
+            }
+
+            unstable-overlays
+          ];
+
+          specialArgs = { inherit inputs; };
+        };
       };
     };
 }
