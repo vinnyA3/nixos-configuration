@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -16,5 +16,9 @@
     ../../home/entertainment.nix
     ../../home/xwayland.nix
     ../../home/ssh.nix
+  ];
+
+  home.packages = with pkgs; [
+    brightnessctl
   ];
 }

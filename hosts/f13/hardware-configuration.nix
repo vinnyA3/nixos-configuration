@@ -9,7 +9,7 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" "cryptd" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
@@ -27,6 +27,8 @@
   swapDevices =
     [ { device = "/dev/mapper/vg-swap"; }
     ];
+
+  boot.initrd.luks.devices."enc-pv".device = "/dev/disk/by-uuid/89c11b25-59bd-4e0c-b8b9-cbffbdd5f728";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.npu.enable = true;
