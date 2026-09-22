@@ -139,6 +139,12 @@
             }
 
             unstable-overlays
+
+            {
+              nixpkgs.overlays = [
+                inputs.millennium.overlays.default
+              ];
+            }
           ];
 
           specialArgs = { inherit inputs; };
