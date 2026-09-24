@@ -70,5 +70,6 @@
     nwg-look
     pinta
     mermaid-cli
+    imagemagick
   ];
 }
