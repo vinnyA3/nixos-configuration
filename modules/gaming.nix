@@ -6,7 +6,11 @@
 
   programs.steam = {
     enable = true;
-    package = pkgs.millennium-steam;
+    package = pkgs.millennium-steam.override {
+      extraArgs = "-pipewire";
+    };
+
+    remotePlay.openFirewall = true;
     protontricks = {
       enable = true;
     };
