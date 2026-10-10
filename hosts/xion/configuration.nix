@@ -9,6 +9,7 @@
     ../../modules/security.nix
     ../../modules/audio.nix
     ../../modules/gaming.nix
+    ../../modules/gamemode.nix
     ../../modules/graphics.nix
     ../../modules/power.nix
 
