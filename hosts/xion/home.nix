@@ -17,6 +17,7 @@
     ../../home/xwayland.nix
     ../../home/ssh.nix
     ../../home/launcher.nix
+    ../../home/system-sounds.nix
   ];
 
   home = {
