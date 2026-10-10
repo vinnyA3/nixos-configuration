@@ -12,6 +12,7 @@
     ../../modules/gamemode.nix
     ../../modules/graphics.nix
     ../../modules/power.nix
+    ../../modules/sshd.nix
 
     (import ../../modules/greeter.nix {
       user = "qwerty";
