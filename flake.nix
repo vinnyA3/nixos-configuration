@@ -53,6 +53,7 @@
             ./hosts/xion/configuration.nix
             ./hosts/xion/hardware-configuration.nix
             inputs.home-manager.nixosModules.home-manager
+
             {
               home-manager = {
                 useGlobalPkgs = true;
