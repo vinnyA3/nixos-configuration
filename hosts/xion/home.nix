@@ -15,7 +15,8 @@
     ../../home/noctalia.nix
     ../../home/zathura.nix
     ../../home/entertainment.nix
-    ../../home/xwayland.nix
+    # this *should* be setup by umbriel
+    # ../../home/xwayland.nix
     ../../home/ssh.nix
     ../../home/launcher.nix
     ../../home/system-sounds.nix
@@ -35,10 +36,14 @@
       output = lib.mkForce {
         "HDMI-A-1" = {
           hdr = "auto";
+          position = [1440 0];
+          scale = 1.0;
           focus_at_startup = true;
         };
 
         "DP-1" = {
+          position = [0 0];
+          scale = 1.0;
           transform = "90";
         };
       };
