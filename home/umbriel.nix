@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   programs.umbriel = {
     enable = true;
@@ -13,11 +14,12 @@
       general = {
         autostart = [ "noctalia" ];
         mod_key = "Super";
+        xwayland = true;
         show_cheatsheet = false;
       };
 
       # Outputs
-      output = {
+      output = lib.mkDefault {
         "eDP-1" = {
           scale = 1.75;
         };
@@ -129,7 +131,7 @@
           repeat = false;
         };
 
-        "Mod+Space" = "spawn:noctalia msg panel-toggle launcher";
+        "Mod+Space" = lib.mkDefault "spawn:noctalia msg panel-toggle launcher";
 
         "Super+Alt+L" = "spawn:noctalia msg session lock";
 
@@ -372,6 +374,15 @@
         };
 
         "Mod+Shift+P" = "dpms-off";
+      };
+
+      # Hot corners
+      hot_corners = {
+        top_left = {
+          enabled = true;
+          delay_ms = 450;
+          action = "overview-open";
+        };
       };
     };
   };
