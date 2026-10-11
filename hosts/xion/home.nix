@@ -38,6 +38,11 @@
           position = [0 0];
           scale = 1.0;
           transform = "90";
+          layout = {
+            scrolling = {
+              default_extent_fraction = 1;
+            };
+          };
         };
       };
 
