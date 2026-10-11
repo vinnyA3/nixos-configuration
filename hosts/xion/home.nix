@@ -23,13 +23,6 @@
     ../../home/umbriel.nix
   ];
 
-  home = {
-    sessionVariables = {
-      XCURSOR_THEME = "mori-calliope-x";
-      XCURSOR_SIZE = "24";
-    };
-  };
-
   # umbriel wm overrides
   programs.umbriel = {
     settings = {

@@ -34,6 +34,17 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # === COMMON ===
+  # Common packages
+
+  home.packages = with pkgs; [
+    # === unstable pkgs
+    unstable.niri
+    # ===
+    pass
+    xfce.thunar
+  ];
+
   gtk = {
     enable = true;
     theme = {
@@ -47,14 +58,8 @@ in
     };
   };
 
-  # === COMMON ===
-  # Common packages
-
-  home.packages = with pkgs; [
-    # === unstable pkgs
-    unstable.niri
-    # ===
-    pass
-    xfce.thunar
-  ];
+  home.sessionVariables = {
+    XCURSOR_THEME = "mori-calliope-x";
+    XCURSOR_SIZE = "24";
+  };
 }
