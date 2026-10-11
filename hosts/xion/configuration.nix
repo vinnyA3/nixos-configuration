@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ../../modules/common.nix
@@ -9,7 +9,6 @@
     ../../modules/security.nix
     ../../modules/audio.nix
     ../../modules/gaming.nix
-    ../../modules/gamemode.nix
     ../../modules/graphics.nix
     ../../modules/power.nix
     ../../modules/sshd.nix
@@ -42,6 +41,9 @@
 
     shell = pkgs.zsh;
   };
+
+  # gaming.nix overrides
+  programs.gamemode.enable = lib.mkForce true;
 
   system.stateVersion = "25.11";
 }
