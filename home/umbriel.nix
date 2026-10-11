@@ -153,6 +153,14 @@
         "Mod+Shift+Space" =
           "spawn:noctalia msg bar-toggle Primary";
 
+        "Mod+Shift+M" = "spawn:chromium --app=https://music.youtube.com/";
+
+        "Mod+Shift+A" = "spawn:chromium --app=https://chatgpt.com";
+
+        "Mod+Shift+X" = "spawn:chromium --app=https://x.com";
+
+        "Mod+Shift+Y" = "spawn:chromium --app=https://youtube.com/";
+
         "Mod+Shift+Slash" = "cheatsheet-toggle";
 
         "Mod+O" = {
