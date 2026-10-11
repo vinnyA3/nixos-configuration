@@ -21,6 +21,7 @@
   networking.hostName = "xion";
   # turn off wireless & disable wpa-supplicant
   networking.networkmanager.unmanaged = [ "*-wlp192s0" ];
+  networking.wireless.enable = lib.mkForce false; # enabled when networkmanager is set to 'enable'
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
