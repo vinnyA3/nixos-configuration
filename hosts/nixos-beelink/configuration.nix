@@ -9,7 +9,6 @@
     ../../modules/networking.nix
     ../../modules/bluetooth.nix
     ../../modules/printing.nix
-    ../../modules/session-vars.nix
     ../../modules/security.nix
     ../../modules/audio.nix
 

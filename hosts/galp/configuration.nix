@@ -6,7 +6,6 @@
     ../../modules/bluetooth.nix
     ../../modules/networking.nix
     ../../modules/security.nix
-    ../../modules/session-vars.nix
 
     (import ../../modules/greeter.nix {
       user = "qwerty_asdf";

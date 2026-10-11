@@ -49,6 +49,9 @@
   environment.variables.PATH = "${pkgs.clang-tools}/bin:$PATH";
   environment.variables.CPATH = "${pkgs.glibc.dev}/include";
   environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   nix.settings.experimental-features = [
     "flakes"

@@ -4,7 +4,6 @@
     ../../modules/common.nix
     ../../modules/networking.nix
     ../../modules/bluetooth.nix
-    ../../modules/session-vars.nix
     ../../modules/security.nix
     ../../modules/audio.nix
     ../../modules/laptop-power.nix
