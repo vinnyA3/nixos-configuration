@@ -32,6 +32,7 @@
 
   programs.opencode = {
     enable = true;
+    package = pkgs.unstable.opencode;
     settings = {
       # per homemanager docs, $schema should already be added
       autoupdate = false;
