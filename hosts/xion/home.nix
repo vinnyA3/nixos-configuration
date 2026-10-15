@@ -28,7 +28,6 @@
     settings = {
       output = lib.mkForce {
         "HDMI-A-1" = {
-          hdr = "auto";
           position = [1440 0];
           scale = 1.0;
           focus_at_startup = true;
