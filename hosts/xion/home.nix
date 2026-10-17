@@ -18,7 +18,6 @@
     # this *should* be setup by umbriel
     # ../../home/xwayland.nix
     ../../home/ssh.nix
-    ../../home/launcher.nix
     ../../home/system-sounds.nix
     ../../home/umbriel.nix
   ];
@@ -43,10 +42,6 @@
             };
           };
         };
-      };
-
-      keybinds = {
-        "Mod+Space" = lib.mkForce "spawn:vicinae toggle";
       };
 
       input = {
