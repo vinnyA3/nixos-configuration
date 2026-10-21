@@ -14,7 +14,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=95ca1e203c0750115fd4a6f17d5a245dfe6b1edd";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=f3a73bcf5d1c5b75a66cf35a48957e30d41d647a";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     noctalia = {
       url = "github:noctalia-dev/noctalia/cachix";
