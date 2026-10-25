@@ -42,7 +42,7 @@ in
     unstable.niri
     # ===
     pass
-    xfce.thunar
+    thunar
   ];
 
   gtk = {
@@ -51,6 +51,8 @@ in
       name = "adw-gtk3";
       package = pkgs.adw-gtk3;
     };
+
+    gtk4.theme = null;
 
     iconTheme = {
       name = "Papirus-Dark";
