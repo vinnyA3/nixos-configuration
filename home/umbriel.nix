@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   programs.umbriel = {
     enable = true;
@@ -7,6 +7,12 @@
       include = {
         files = [
           "~/.config/umbriel/noctalia.toml"
+          "${config.programs.umbriel.package}/share/umbriel/effects/border/pulse/effect.toml"
+          "${config.programs.umbriel.package}/share/umbriel/effects/border/audio/effect.toml"
+          "${config.programs.umbriel.package}/share/umbriel/effects/cursor/glow/effect.toml"
+          "${config.programs.umbriel.package}/share/umbriel/effects/cursor/trail/effect.toml"
+          "${config.programs.umbriel.package}/share/umbriel/effects/window/scanlines/effect.toml"
+          "${config.programs.umbriel.package}/share/umbriel/effects/animation/reveal/effect.toml"
         ];
       };
 
@@ -22,6 +28,18 @@
       output = lib.mkDefault {
         "eDP-1" = {
           scale = 1.75;
+        };
+      };
+
+      # Effects
+      effects = {
+        border = "pulse";
+      };
+
+      # Animations
+      animation = {
+        windows_in = {
+          effect = "reveal";
         };
       };
 
