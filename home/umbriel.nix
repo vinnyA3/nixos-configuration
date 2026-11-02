@@ -106,6 +106,26 @@
           blur_optimized = true;
         }
 
+        {
+          match.app_id = "^imv$";
+          default_floating = true;
+          default_floating_size = {
+            width = 0.5;
+            height = 0.5;
+          };
+
+          window_effect = "off";
+        }
+
+        {
+          match.app_id = "^thunar$";
+          default_floating = true;
+          default_floating_size = {
+            width = 0.33;
+            height = 0.33;
+          };
+        }
+
         # Noctalia settings window.
         {
           match.app_id = "^dev[.]noctalia[.]Noctalia$";
@@ -145,15 +165,15 @@
       # Keep every desired binding here.
       keybinds = {
         "Mod+Return" = {
-          action = "spawn:foot";
+          action = "spawn foot";
           repeat = false;
         };
 
-        "Mod+Space" = lib.mkDefault "spawn:noctalia msg panel-toggle launcher";
+        "Mod+Space" = lib.mkDefault "spawn noctalia msg panel-toggle launcher";
 
-        "Super+Alt+L" = "spawn:noctalia msg session lock";
+        "Super+Alt+L" = "spawn noctalia msg session lock";
 
-        "Mod+Escape" = "spawn:noctalia msg panel-toggle session";
+        "Mod+Escape" = "spawn noctalia msg panel-toggle session";
 
         # Moved from Mod+Escape to avoid a binding conflict.
         "Mod+Shift+Escape" = {
@@ -163,21 +183,21 @@
         };
 
         "Mod+Ctrl+Space" =
-          "spawn:noctalia msg panel-toggle wallpaper";
+          "spawn noctalia msg panel-toggle wallpaper";
 
         "Mod+Alt+Space" =
-          "spawn:noctalia msg panel-toggle control-center";
+          "spawn noctalia msg panel-toggle control-center";
 
         "Mod+Shift+Space" =
-          "spawn:noctalia msg bar-toggle Primary";
+          "spawn noctalia msg bar-toggle Primary";
 
-        "Mod+Shift+M" = "spawn:chromium --app=https://music.youtube.com/";
+        "Mod+Shift+M" = "spawn chromium --app=https://music.youtube.com/";
 
-        "Mod+Shift+A" = "spawn:chromium --app=https://chatgpt.com";
+        "Mod+Shift+A" = "spawn chromium --app=https://chatgpt.com";
 
-        "Mod+Shift+X" = "spawn:chromium --app=https://x.com";
+        "Mod+Shift+X" = "spawn chromium --app=https://x.com";
 
-        "Mod+Shift+Y" = "spawn:chromium --app=https://youtube.com/";
+        "Mod+Shift+Y" = "spawn chromium --app=https://youtube.com/";
 
         "Mod+Shift+Slash" = "cheatsheet-toggle";
 
@@ -188,28 +208,28 @@
 
         # Audio and media
         "XF86AudioRaiseVolume" =
-          "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
+          "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
 
         "XF86AudioLowerVolume" =
-          "spawn:wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+          "spawn wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
 
         "XF86AudioMute" =
-          "spawn:wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          "spawn wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
 
         "XF86AudioMicMute" =
-          "spawn:wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+          "spawn wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
 
-        "XF86AudioPlay" = "spawn:playerctl play-pause";
-        "XF86AudioStop" = "spawn:playerctl stop";
-        "XF86AudioPrev" = "spawn:playerctl previous";
-        "XF86AudioNext" = "spawn:playerctl next";
+        "XF86AudioPlay" = "spawn playerctl play-pause";
+        "XF86AudioStop" = "spawn playerctl stop";
+        "XF86AudioPrev" = "spawn playerctl previous";
+        "XF86AudioNext" = "spawn playerctl next";
 
         # Brightness
         "XF86MonBrightnessUp" =
-          "spawn:brightnessctl --class=backlight set +10%";
+          "spawn brightnessctl --class=backlight set +10%";
 
         "XF86MonBrightnessDown" =
-          "spawn:brightnessctl --class=backlight set 10%-";
+          "spawn brightnessctl --class=backlight set 10%-";
 
         # Window focus
         "Mod+Left" = "window-focus-left";
@@ -290,26 +310,26 @@
         "Mod+Ctrl+I" = "column-move-to-workspace-previous";
 
         # Numbered workspaces
-        "Mod+1" = "workspace-switch:1";
-        "Mod+2" = "workspace-switch:2";
-        "Mod+3" = "workspace-switch:3";
-        "Mod+4" = "workspace-switch:4";
-        "Mod+5" = "workspace-switch:5";
-        "Mod+6" = "workspace-switch:6";
-        "Mod+7" = "workspace-switch:7";
-        "Mod+8" = "workspace-switch:8";
-        "Mod+9" = "workspace-switch:9";
+        "Mod+1" = "workspace-switch 1";
+        "Mod+2" = "workspace-switch 2";
+        "Mod+3" = "workspace-switch 3";
+        "Mod+4" = "workspace-switch 4";
+        "Mod+5" = "workspace-switch 5";
+        "Mod+6" = "workspace-switch 6";
+        "Mod+7" = "workspace-switch 7";
+        "Mod+8" = "workspace-switch 8";
+        "Mod+9" = "workspace-switch 9";
 
         # Move the focused column to a numbered workspace
-        "Mod+Ctrl+1" = "column-move-to-workspace:1";
-        "Mod+Ctrl+2" = "column-move-to-workspace:2";
-        "Mod+Ctrl+3" = "column-move-to-workspace:3";
-        "Mod+Ctrl+4" = "column-move-to-workspace:4";
-        "Mod+Ctrl+5" = "column-move-to-workspace:5";
-        "Mod+Ctrl+6" = "column-move-to-workspace:6";
-        "Mod+Ctrl+7" = "column-move-to-workspace:7";
-        "Mod+Ctrl+8" = "column-move-to-workspace:8";
-        "Mod+Ctrl+9" = "column-move-to-workspace:9";
+        "Mod+Ctrl+1" = "column-move-to-workspace 1";
+        "Mod+Ctrl+2" = "column-move-to-workspace 2";
+        "Mod+Ctrl+3" = "column-move-to-workspace 3";
+        "Mod+Ctrl+4" = "column-move-to-workspace 4";
+        "Mod+Ctrl+5" = "column-move-to-workspace 5";
+        "Mod+Ctrl+6" = "column-move-to-workspace 6";
+        "Mod+Ctrl+7" = "column-move-to-workspace 7";
+        "Mod+Ctrl+8" = "column-move-to-workspace 8";
+        "Mod+Ctrl+9" = "column-move-to-workspace 9";
 
         # Window grouping
         "Mod+BracketLeft" = "window-consume-or-expel-left";
@@ -329,11 +349,11 @@
 
         "Mod+Ctrl+Shift+R" = "window-cycle-secondary-extent";
 
-        "Mod+Minus" = "window-modify-primary-extent:-0.1";
-        "Mod+Equal" = "window-modify-primary-extent:0.1";
+        "Mod+Minus" = "window-modify-primary-extent -0.1";
+        "Mod+Equal" = "window-modify-primary-extent 0.1";
 
-        "Mod+Shift+Minus" = "window-modify-secondary-extent:-0.1";
-        "Mod+Shift+Equal" = "window-modify-secondary-extent:0.1";
+        "Mod+Shift+Minus" = "window-modify-secondary-extent -0.1";
+        "Mod+Shift+Equal" = "window-modify-secondary-extent 0.1";
 
         # Window state
         "Mod+Q" = {
