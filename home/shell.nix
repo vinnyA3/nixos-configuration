@@ -37,6 +37,7 @@
       autoload -z edit-command-line
       zle -N edit-command-line
       bindkey -M vicmd ' ' edit-command-line
+      source $HOME/.config/fzf/themes/noctalia.sh
     '';
   };
 
