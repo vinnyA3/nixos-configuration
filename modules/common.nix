@@ -30,7 +30,6 @@
   ];
 
   programs.zsh.enable = true;
-  programs.neovim.enable = true;
   programs.dconf.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.direnv = {
     enable = true;
@@ -56,8 +56,36 @@
     };
   };
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    package = pkgs.neovim-unwrapped;
+    # Pkgs listed here for reference - mostly added project level (ie. proj's flake.nix)
+    # extraPackages = with pkgs; [
+      # === lsps
+      # gopls
+      # lua-language-server
+      # marksman
+      # typescript-language-server
+      # stylua
+      # === linters
+      # eslint_d
+      # markdownlint-cli2
+      # === formatters
+      # golines
+      # markdown-toc
+      # nixfmt
+      # prettier
+      # shfmt
+    # ];
+  };
+
+  # don't generate an nvim init
+  xdg.configFile."nvim/init.lua".enable = lib.mkForce false;
+
   home.packages = with pkgs; [
-    neovim # enabled in modules/common too
+    gcc
+    gnumake
     bat
     ripgrep
     ffmpeg
