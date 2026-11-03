@@ -231,6 +231,11 @@
         "XF86MonBrightnessDown" =
           "spawn brightnessctl --class=backlight set 10%-";
 
+        # Scratchpad
+        "Mod+Shift+S" = "window-move-to-scratchpad";
+        "Mod+S" = "scratchpad-toggle";
+        "Mod+Ctrl+S" = "window-restore-from-scratchpad";
+
         # Window focus
         "Mod+Left" = "window-focus-left";
         "Mod+H" = "window-focus-left";
