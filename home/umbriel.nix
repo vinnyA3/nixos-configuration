@@ -8,10 +8,6 @@
         files = [
           "~/.config/umbriel/noctalia.toml"
           "${config.programs.umbriel.package}/share/umbriel/effects/border/pulse/effect.toml"
-          "${config.programs.umbriel.package}/share/umbriel/effects/border/audio/effect.toml"
-          "${config.programs.umbriel.package}/share/umbriel/effects/cursor/glow/effect.toml"
-          "${config.programs.umbriel.package}/share/umbriel/effects/cursor/trail/effect.toml"
-          "${config.programs.umbriel.package}/share/umbriel/effects/window/scanlines/effect.toml"
           "${config.programs.umbriel.package}/share/umbriel/effects/animation/reveal/effect.toml"
         ];
       };
