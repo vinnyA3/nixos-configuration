@@ -114,7 +114,7 @@
         }
 
         {
-          match.app_id = "^thunar$";
+          match.app_id = "^luciole$";
           default_floating = true;
           default_floating_size = {
             width = 0.33;

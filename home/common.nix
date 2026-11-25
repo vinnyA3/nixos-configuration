@@ -42,7 +42,6 @@ in
     unstable.niri
     # ===
     pass
-    thunar
   ];
 
   gtk = {

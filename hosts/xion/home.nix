@@ -3,6 +3,7 @@
   imports = [
     inputs.noctalia.homeModules.default
     inputs.umbriel.homeModules.default
+    inputs.luciole.homeModules.default
     ../../home/common.nix
     ../../home/fonts.nix
     ../../home/xdg.nix
@@ -20,6 +21,7 @@
     ../../home/ssh.nix
     ../../home/system-sounds.nix
     ../../home/umbriel.nix
+    ../../home/luciole.nix
   ];
 
   # umbriel wm overrides

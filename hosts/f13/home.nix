@@ -3,6 +3,7 @@
   imports = [
     inputs.noctalia.homeModules.default
     inputs.umbriel.homeModules.default
+    inputs.luciole.homeModules.default
     ../../home/common.nix
     ../../home/fonts.nix
     ../../home/xdg.nix
@@ -18,6 +19,7 @@
     ../../home/xwayland.nix
     ../../home/ssh.nix
     ../../home/umbriel.nix
+    ../../home/luciole.nix
   ];
 
   home.packages = with pkgs; [

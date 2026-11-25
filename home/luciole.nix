@@ -1,0 +1,5 @@
+{
+  programs.luciole = {
+    enable = true;
+  };
+}
