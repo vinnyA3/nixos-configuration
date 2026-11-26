@@ -106,19 +106,19 @@
           match.app_id = "^imv$";
           default_floating = true;
           default_floating_size = {
-            width = 0.5;
-            height = 0.5;
+            width = 0.3;
+            height = 0.3;
           };
 
           window_effect = "off";
         }
 
         {
-          match.app_id = "^luciole$";
+          match.app_id = "^dev[.]noctalia[.]luciole$";
           default_floating = true;
           default_floating_size = {
-            width = 0.33;
-            height = 0.33;
+            width = 0.5;
+            height = 0.6;
           };
         }
 
