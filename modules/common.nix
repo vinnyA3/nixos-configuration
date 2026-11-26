@@ -8,6 +8,8 @@
 
   time.timeZone = "America/New_York";
 
+  services.gvfs.enable = true;
+
   services.keyd = {
     enable = true;
     keyboards = {
